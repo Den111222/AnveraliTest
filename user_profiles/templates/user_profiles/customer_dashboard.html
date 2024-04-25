@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, {{ user_profile.user.username }}!</h1>
+    <form method="post" action="{% url 'customer_dashboard' %}">
+        {% csrf_token %}
+        <button type="submit">Show Performers</button>
+    </form>
+    <h2>Performers:</h2>
+    <ul>
+        {% if performers %}
+            {% for performer in performers %}
+                <li>{{ performer.NAME }}-{{ performer.INFO }}</li>
+            {% endfor %}
+        {% else %}
+            <li>No performers found</li>
+        {% endif %}
+    </ul>
+    <a href="{% url 'logout' %}">Logout</a>
+    <!-- Дополнительный контент для заказчика -->
+</body>
+</html>
